@@ -1,0 +1,27 @@
+<h1>All Comments</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Article ID</th>
+    <th>Comment</th>
+    <th>User ID</th>
+    <th>Parent ID</th>
+    <th>Created</th>
+    <th>Updated</th>
+  </tr>
+ 
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.id %></td>
+      <td><%= comment.articleId %></td>
+      <td><%= comment.text %></td>
+      <td><%= comment.user_id %></td>
+      <td><%= comment.parentId %></td>
+      <td><%= comment.created_at %></td>
+      <td><%= comment.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Home', welcome_index_path %>
