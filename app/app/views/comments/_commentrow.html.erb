@@ -1,0 +1,27 @@
+
+<!-- Display one comment at a time. Then show children comments. -->
+<%= @top_level.each do |current| %>
+  <tr>
+    <td><%= link_to @parents_children[current][:self].id,
+      {:controller => 'comments',
+       :action => 'show',
+       :id => @parents_children[current][:self].id} %>
+    </td>
+    <td><%= @parents_children[current][:self].articleId %></td>
+    <td><%= @parents_children[current][:self].text %></td>
+    <td><%= @parents_children[current][:self].user_id %></td>
+    <td><%= @parents_children[current][:self].parentId %></td>
+    <td><%= @parents_children[current][:self].created_at %></td>
+    <td><%= @parents_children[current][:self].updated_at %></td>
+    <td><%= link_to 'Reply',
+      {:controller => 'comments',
+       :action => 'new',
+       :parentId => @parents_children[current][:self].id} %>
+    </td>
+  </tr>
+
+  <!-- TODO: This is where the recursion is breaking. This is one minor step away from working -->
+  <!-- If the following line is executed, then we get a stack too deep error. Need to figure out exit condition. -->
+  <%-# render 'commentrow', :top_level => @parents_children[current][:children] -%>
+
+<% end %>

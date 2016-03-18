@@ -12,18 +12,9 @@
     <th>Reply</th>
   </tr>
  
-  <% @comments.each do |comment| %>
-    <tr>
-      <td><%= comment.id %></td>
-      <td><%= comment.articleId %></td>
-      <td><%= comment.text %></td>
-      <td><%= comment.user_id %></td>
-      <td><%= comment.parentId %></td>
-      <td><%= comment.created_at %></td>
-      <td><%= comment.updated_at %></td>
-      <td><%= link_to 'Reply', {:controller => 'comments', :action => 'new', :parentId => comment.id} %></td>
-    </tr>
-  <% end %>
+<%= render 'commentrow', :top_level => @top_level %>
+
 </table>
 
+<br><br>
 <%= link_to 'Home', welcome_index_path %>
