@@ -5,11 +5,12 @@ class CommentsController < ApplicationController
   end
 
   def new
-
+    @parentId = params[:parentId]
   end
 
   def create
     # render plain: params[:comment].inspect
+    # render plain: params
     @comment  = Comment.new(comment_params)
     @comment.save
     redirect_to @comment
@@ -17,7 +18,9 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:text, :user_id)
+      @temp = params.require(:comment).permit(:text, :user_id)
+      @temp[:parentId] = params[:parentId]
+      return @temp
     end
 
   def show
